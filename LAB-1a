@@ -1,0 +1,113 @@
+ import java.util.HashMap;
+
+public class Performance 
+{
+    private int[] marks;  // declares private instance variable
+
+    public Performance()
+    {
+        marks = new int[10]; 
+    }
+
+    public void reading_Marks(int[] studentMarks)
+    {
+        if (studentMarks.length == 10) 
+        {
+            marks = studentMarks.clone();
+        } 
+        else
+        {
+            System.out.println("Invalid input. Please provide marks for all 10 students.");
+        }
+    }
+
+
+    public int cal_highestmark()
+    {
+        int max = marks[0];
+        for (int i = 1; i < marks.length; i++)
+        {
+            if (marks[i] > max) 
+            {
+                max = marks[i];
+            }
+        }
+        return max;
+    }
+
+
+    public int cal_leastmark() 
+    {
+        int min = marks[0];
+        for (int i = 1; i < marks.length; i++) 
+        {
+            if (marks[i] < min) 
+            {
+                min = marks[i];
+            }
+        }
+        return min;
+    }
+    
+
+    public int cal_mode()
+    {
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int mark : marks) 
+        {
+            frequencyMap.put(mark, frequencyMap.getOrDefault(mark, 0) + 1);
+        }
+        int mode = marks[0];
+        int maxFreq = frequencyMap.get(marks[0]);
+        for (int mark : frequencyMap.keySet()) {
+            if (frequencyMap.get(mark) >= maxFreq && mark >= mode) {
+                mode = mark;
+                maxFreq = frequencyMap.get(mark);
+            }
+        }
+        return mode;
+    }
+
+    public int freqofMode() 
+    {
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int mark : marks) 
+        {
+            frequencyMap.put(mark, frequencyMap.getOrDefault(mark, 0) + 1);
+        }
+        int mode = marks[0];
+        int maxFreq = frequencyMap.get(marks[0]);
+        for (int mark : frequencyMap.keySet()) {
+            if (frequencyMap.get(mark) >= maxFreq && mark >= mode) {
+                mode = mark;
+                maxFreq = frequencyMap.get(mark);
+            }
+        }
+        return maxFreq;
+    }
+
+    public void result() 
+    {
+        System.out.println("Mode: " + cal_mode());
+        System.out.println("Mode Frequency: " + freqofMode());
+        System.out.println("Highest Mark: " + cal_highestmark());
+        System.out.println("Least Mark: " + cal_leastmark());
+    }
+
+    public static void main(String[] args) 
+    {
+        Performance obj = new Performance();
+        int marks[] = {75, 90, 85, 75, 92, 90, 85, 75, 92, 88}; 
+
+        obj.reading_Marks(marks);
+        obj.result();
+    }
+}
+
+
+
+
+
+
+
+
