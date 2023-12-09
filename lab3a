@@ -1,0 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package msc;
+
+/**
+ *
+ * @author SHRUTI
+ */
+import java.util.Scanner;
+
+
+
+class employee
+{
+    Scanner scn = new Scanner(System.in);
+    int employeeId = scn.nextInt();
+    String employeeName = scn.next();
+    String designation = scn.next();
+    int n = scn.nextInt();
+    void getinfo()
+    {
+       
+        System.out.println("Enter no of employees in Company");
+        for(int i=1; i <= n; i++)
+        {
+          System.out.println("Enter ID of Employee"+i+":");
+          employeeId = scn.nextInt();
+         System.out.println("Enter Name of employees"+i+":");
+           employeeName= scn.next();
+          System.out.println("Enter Designation of employees"+i+":");
+          designation = scn.next();                 
+        }
+    }
+}
+
+class HourlyEmployee extends employee
+{
+    double hourlyRate;
+    int hourlyWorked;
+    void weeklyEarnings()
+    {
+        double weeklySal = hourlyRate * hourlyWorked;
+    }
+}
+
+class SalariedEmployee extends employee
+{
+    double monthlySalary;
+    void weeklyEarnings()
+    {
+        double weeklySal = monthlySalary/4;
+    }
+}
+
+class ExecutiveEmployee extends SalariedEmployee
+{
+    double bonusPercentage;
+}
+
+public class LAB3a 
+{
+    public static void main(String args[])
+    {
+       employee e = new employee();
+       e.getinfo();
+    }
+}
